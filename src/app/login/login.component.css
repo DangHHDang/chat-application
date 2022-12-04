@@ -12,6 +12,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  
 }
 
 .positronx {
@@ -63,6 +64,7 @@
   min-width: 100%;
   max-width: 300px;
   width: 100%;
+  padding: 30px 20px;
 }
 
 .login-wrapper .example-full-width,

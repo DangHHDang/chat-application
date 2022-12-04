@@ -1,0 +1,14 @@
+.mat-elevation table {
+  width: 100%;
+}
+
+.actions{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-avatar{
+  max-width: 30px;
+  border-radius: 50%;
+}
