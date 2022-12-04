@@ -51,8 +51,14 @@ export class UserComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
   }
 
-  delete(user:any){
-
+  delete(user:User): void{
+    console.log(user);
+  }
+  edit(user:User): void{
+    console.log(user);
+  }
+  detail(user:User): void{
+    console.log(user);
   }
 
 }
