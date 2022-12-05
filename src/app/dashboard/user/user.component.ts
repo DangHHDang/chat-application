@@ -43,15 +43,13 @@ export class UserComponent implements OnInit,AfterViewInit {
       data
     })
     dialog.afterClosed().subscribe(res => {
+      // Call API delete start
       console.log(res);
+      // Call API delete end
     })
   }
   edit(user:User): void{
     this._router.navigate(['users','edit',user.id]);
-    console.log(user);
-  }
-  detail(user:User): void{
-    console.log(user);
   }
 
 }
