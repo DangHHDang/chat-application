@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
@@ -14,6 +14,10 @@ import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { SharedModule } from "../shared/shared.module";
 import { SpinnerComponent } from "../shared/spinner.component";
+import { CreateUserComponent } from './user/create/create-user.component';
+import { CreateRoomComponent } from './room/create-room/create-room.component';
+import { CreateChannelComponent } from './channel/create-channel/create-channel.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 @NgModule({
   
@@ -21,13 +25,15 @@ import { SpinnerComponent } from "../shared/spinner.component";
     CommonModule,
     RouterModule.forChild(dashboardRoutes),
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     AuthGuard
   ],
-  declarations: [LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent,SpinnerComponent],
+  declarations: [LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent,SpinnerComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class DashboardModule { }

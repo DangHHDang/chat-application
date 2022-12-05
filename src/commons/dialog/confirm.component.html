@@ -1,0 +1,10 @@
+<ng-container >
+  <h1 mat-dialog-title>Delete {{data.type}}</h1>
+<div mat-dialog-content>
+  Would you like to delete {{data.type}} : {{data.name}}
+</div>
+<div class="actions">
+  <button class="btn"  (click)="onNoClick()">No</button>
+  <button class="btn btn-del" (click)="delete()" >Delete</button>
+</div>
+</ng-container>

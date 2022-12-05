@@ -1,0 +1,47 @@
+<ng-container>
+  <div class="actions">
+    <div class="title">
+      <H1>Update User</H1>
+    </div>
+  </div>
+  <div class="form">
+    <form [formGroup]="userForm">
+      <div class="content">
+        <div class="content-left">
+          <div class="nameField">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="User Name" formControlName="name">
+            </mat-form-field>
+            <div class="errors" *ngIf="submitted && errorHandling('name','required')">Name is required</div>
+          </div>
+          <div class="emailField">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <div class="errors" *ngIf="submitted && errorHandling('email','required')">Email is required</div>
+            <div class="errors" *ngIf="submitted && errorHandling('email','email')">Email must be a valid email address
+            </div>
+          </div>
+        </div>
+        <div class="avatar">
+          <div class="avatar-upload">
+            <div class="avatar-edit">
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+            </div>
+            <div class="avatar-preview">
+              <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+              </div>
+            </div>
+          </div>
+          <div class="avatar-action">
+            <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Upload Image</button>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button (click)="cancel()" style="margin-right: 5px" mat-raised-button>Cancel</button>
+        <button (click)="create()" mat-raised-button color="primary">Update</button>
+      </div>
+    </form>
+  </div>
+</ng-container>
