@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-create-room',
@@ -15,7 +17,7 @@ export class CreateRoomComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   imageUrl: any = 'https://cdn.vuetifyjs.com/images/cards/girl.jpg';
-  constructor(public fb: FormBuilder,private _router: Router,private cd: ChangeDetectorRef) { }
+  constructor(public fb: FormBuilder,private _router: Router,private cd: ChangeDetectorRef,private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class CreateRoomComponent implements OnInit {
   create(){
     this.submitted = true;
     if(!this.roomForm.invalid){
+      this.toastr.success('Hello world!', 'Toastr fun!');
       console.log("Submit form", console.log(this.roomForm.value));
     }
   }

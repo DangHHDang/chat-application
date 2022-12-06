@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { CdkTableModule } from "@angular/cdk/table";
 import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -35,6 +35,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { MenuItems } from "./menu-items/menu-items";
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -73,7 +74,9 @@ import { MenuItems } from "./menu-items/menu-items";
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ MenuItems ]
 })
 export class SharedModule {}

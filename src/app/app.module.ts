@@ -10,13 +10,19 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
+// Import library module
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptorService } from './core/services/spinner/spinner-interceptor.service';
 import { SpinnerComponent } from './shared/spinner.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -26,6 +32,7 @@ import { SpinnerComponent } from './shared/spinner.component';
     SharedModule,
     FormsModule,
     DashboardModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

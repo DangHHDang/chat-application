@@ -1,1 +1,31 @@
-<p>create-channel works!</p>
+<ng-container>
+    <div class="actions">
+      <div class="title">
+        <H1>Create Channel</H1>
+      </div>
+    </div>
+    <div class="form">
+      <form [formGroup]="channelForm">
+        <div class="content">
+          <div class="content-left">
+            <div class="nameField">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Room Name" formControlName="name">
+              </mat-form-field>
+              <div class="errors" *ngIf="submitted && errorHandling('name','required')">Name is required</div>
+            </div>
+            <div class="typeField">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Type" formControlName="type">
+              </mat-form-field>
+              <div class="errors" *ngIf="submitted && errorHandling('type','required')">Type is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <button (click)="cancel()" style="margin-right: 5px" mat-raised-button>Cancel</button>
+          <button (click)="create()" mat-raised-button color="primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </ng-container>

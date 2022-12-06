@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { AuthGuard } from "../guards/auth-guard.service";
 import { ChannelComponent } from "./channel/channel.component";
 import { CreateChannelComponent } from "./channel/create-channel/create-channel.component";
+import { EditChannelComponent } from "./channel/edit-channel/edit-channel.component";
 import { LayoutComponent } from "./layout/layout.component";
 import { CreateRoomComponent } from "./room/create-room/create-room.component";
 import { EditRoomComponent } from "./room/edit-room/edit-room.component";
@@ -54,7 +55,7 @@ export const dashboardRoutes: Routes = [
       },
       {
         path: 'channels/edit/:id',
-        component: CreateChannelComponent
+        component: EditChannelComponent
       },
     ]
   }

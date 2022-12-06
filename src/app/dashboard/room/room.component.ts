@@ -1,13 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { ROOM_DATA } from 'src/app/shared/constants/room.constan';
+import { ROOM_DATA } from 'src/app/shared/constants/room.constant';
 import { Room } from 'src/app/shared/models/room.model';
 import { User, DATA_MODEL } from 'src/app/shared/models/user.model';
 import { ConfirmDialog } from 'src/commons/dialog/confirm.component';
-
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',

@@ -1,1 +1,64 @@
-<p>channel works!</p>
+<ng-container>
+    <div class="actions">
+      <div class="title"><H1>Channels</H1></div>
+      <div class="action"><button (click)="create()" mat-raised-button color="primary">Create</button></div>
+    </div>
+    <div class="mat-elevation">
+      <table mat-table [dataSource]="dataSource">
+  
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+  
+        <!-- Avatar Column -->
+        <ng-container matColumnDef="thumbnail">
+          <th mat-header-cell *matHeaderCellDef> Thumbnail </th>
+          <td mat-cell *matCellDef="let element"><img  [src]="element.thumbnail" class="channel-avatar" alt="Photo of a Shiba Inu"></td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+  
+        <!-- Email Column -->
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status">
+                <div class="status-dot" [ngClass]="{'active' : element.status == 'active'}"></div>
+                <div class="status-text">
+                    {{element.status}} 
+                </div>
+            </div>
+          </td>
+        </ng-container>
+  
+        <ng-container cdkColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="accent" (click)="edit(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="delete(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </ng-container>

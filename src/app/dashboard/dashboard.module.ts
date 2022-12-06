@@ -13,28 +13,35 @@ import { UserComponent } from "./user/user.component";
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { SharedModule } from "../shared/shared.module";
-import { SpinnerComponent } from "../shared/spinner.component";
 import { CreateUserComponent } from './user/create/create-user.component';
 import { CreateRoomComponent } from './room/create-room/create-room.component';
 import { CreateChannelComponent } from './channel/create-channel/create-channel.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { EditRoomComponent } from './room/edit-room/edit-room.component';
+import { EditChannelComponent } from './channel/edit-channel/edit-channel.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { SpinnerComponent } from "../shared/spinner.component";
+import { SpinnerInterceptorService } from "../core/services/spinner/spinner-interceptor.service";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild(dashboardRoutes),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true }
   ],
-  declarations: [LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent,SpinnerComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent, EditRoomComponent],
+  declarations: [SpinnerComponent,LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent, EditRoomComponent, EditChannelComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class DashboardModule { }

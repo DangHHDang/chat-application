@@ -1,0 +1,32 @@
+.mat-elevation table {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.channel-avatar {
+    max-width: 30px;
+    border-radius: 50%;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+}
+
+.status-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.active {
+    background-color: green;
+}

@@ -2,9 +2,8 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { ROOM_DATA } from 'src/app/shared/constants/room.constan';
+import { ROOM_DATA } from 'src/app/shared/constants/room.constant';
 import { Room } from 'src/app/shared/models/room.model';
-import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-edit-room',
@@ -18,7 +17,6 @@ export class EditRoomComponent implements OnInit {
   submitted: boolean = false;
   editFile: boolean = true;
   removeUpload: boolean = false;
-  userId !: number
   $destroy = new Subject<void>();
   rooms : Room[] = ROOM_DATA
   imageUrl: any = 'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light';

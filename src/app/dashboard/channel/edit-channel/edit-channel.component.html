@@ -1,11 +1,11 @@
 <ng-container>
     <div class="actions">
       <div class="title">
-        <H1>Create Room</H1>
+        <H1>Update Channel</H1>
       </div>
     </div>
     <div class="form">
-      <form [formGroup]="roomForm">
+      <form [formGroup]="channelForm">
         <div class="content">
           <div class="content-left">
             <div class="nameField">
@@ -19,20 +19,6 @@
                 <input matInput placeholder="Type" formControlName="type">
               </mat-form-field>
               <div class="errors" *ngIf="submitted && errorHandling('type','required')">Type is required</div>
-            </div>
-          </div>
-          <div class="avatar">
-            <div class="avatar-upload">
-              <div class="avatar-edit">
-                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
-              </div>
-              <div class="avatar-preview">
-                <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
-                </div>
-              </div>
-            </div>
-            <div class="avatar-action">
-              <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Upload Image</button>
             </div>
           </div>
         </div>

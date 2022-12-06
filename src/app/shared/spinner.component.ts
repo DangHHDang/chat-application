@@ -1,58 +1,41 @@
 import {
   Component,
-  Input,
   OnDestroy,
-  Inject,
-  ViewEncapsulation
 } from '@angular/core';
-import {
-  Router,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError
-} from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { SpinnerHandlerService } from '../core/services/spinner/spinner-handler.service';
 
 @Component({
   selector: 'app-spinner',
-  template: `<div class="preloader" *ngIf="isSpinnerVisible">
-        <div class="spinner">
-          <div class="double-bounce1"></div>
-          <div class="double-bounce2"></div>
-        </div>
-    </div>`,
-  encapsulation: ViewEncapsulation.None
-})
-export class SpinnerComponent implements OnDestroy {
-  public isSpinnerVisible = true;
+  template: `<div class="spinner-container" *ngIf="spinnerActive">
+  <mat-spinner></mat-spinner>
+</div>`,
+styles: [
+  `.spinner-container {
+    background-color: rgba(0,0,0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
 
-  @Input()
-  public backgroundColor = 'rgba(0, 115, 170, 0.69)';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10000
+  }`
+  ]
+})
+export class SpinnerComponent{
+  spinnerActive: boolean = true;
 
   constructor(
-    private router: Router,
-    @Inject(DOCUMENT) private document: Document
+    public spinnerHandler: SpinnerHandlerService
   ) {
-    this.router.events.subscribe(
-      event => {
-        if (event instanceof NavigationStart) {
-          this.isSpinnerVisible = true;
-        } else if (
-          event instanceof NavigationEnd ||
-          event instanceof NavigationCancel ||
-          event instanceof NavigationError
-        ) {
-          this.isSpinnerVisible = false;
-        }
-      },
-      () => {
-        this.isSpinnerVisible = false;
-      }
-    );
+    this.spinnerHandler.showSpinner.subscribe(this.showSpinner.bind(this));
   }
 
-  ngOnDestroy(): void {
-    this.isSpinnerVisible = false;
-  }
+  showSpinner = (state: boolean): void => {
+    this.spinnerActive = state;
+  };
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create',
@@ -14,7 +15,7 @@ export class CreateUserComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   imageUrl: any = 'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light';
-  constructor(public fb: FormBuilder,private _router: Router,private cd: ChangeDetectorRef) { }
+  constructor(public fb: FormBuilder,private _router: Router,private cd: ChangeDetectorRef,private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class CreateUserComponent implements OnInit {
   create(){
     this.submitted = true;
     if(!this.userForm.invalid){
+      this.toastr.success('Hello world!', 'Toastr fun!');
       console.log("Submit form", console.log(this.userForm.value));
     }
   }
