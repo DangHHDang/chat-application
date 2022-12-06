@@ -1,21 +1,33 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { ROOM_DATA } from 'src/app/shared/constants/room.constan';
+import { Room } from 'src/app/shared/models/room.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
-  selector: 'app-create-room',
-  templateUrl: './create-room.component.html',
-  styleUrls: ['./create-room.component.css']
+  selector: 'app-edit-room',
+  templateUrl: './edit-room.component.html',
+  styleUrls: ['./edit-room.component.css']
 })
-export class CreateRoomComponent implements OnInit {
+export class EditRoomComponent implements OnInit {
 
   @ViewChild('fileInput') el!: ElementRef;
-  roomForm! : FormGroup;
+  roomForm!: FormGroup;
   submitted: boolean = false;
   editFile: boolean = true;
   removeUpload: boolean = false;
-  imageUrl: any = 'https://cdn.vuetifyjs.com/images/cards/girl.jpg';
-  constructor(public fb: FormBuilder,private _router: Router,private cd: ChangeDetectorRef) { }
+  userId !: number
+  $destroy = new Subject<void>();
+  rooms : Room[] = ROOM_DATA
+  imageUrl: any = 'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light';
+  constructor(
+    public fb: FormBuilder, 
+    private _router: Router, 
+    private cd: ChangeDetectorRef,
+    private router: ActivatedRoute
+  ) { }
 
 
   ngOnInit(): void {
@@ -27,13 +39,31 @@ export class CreateRoomComponent implements OnInit {
     return this.roomForm.controls;
   }
 
-  initForm(){
+  initForm() {
     this.roomForm = this.fb.group({
       name: ['',Validators.required],
       type: ['',[Validators.required,]],
       status : [''],
       file: ['']
     })
+    this.router.params
+    .pipe(takeUntil(this.$destroy))
+    .subscribe(params => {
+      const id = params['id']
+      const room = this.rooms.find(room => room.id == id)
+      this.roomForm.patchValue({
+        name: room?.name,
+        type: room?.type,
+        status : room?.status,
+        file: room?.thumbnail
+      })
+      this.imageUrl = room?.thumbnail
+    })
+  }
+
+  ngOnDestroy(){
+    this.$destroy.next();
+    this.$destroy.complete()
   }
 
   /* Handle form errors in Angular 8 */
@@ -41,17 +71,17 @@ export class CreateRoomComponent implements OnInit {
     return this.roomForm.controls[control].hasError(error);
   }
 
-  create(){
+  create() {
     this.submitted = true;
-    if(!this.roomForm.invalid){
+    if (!this.roomForm.invalid) {
       console.log("Submit form", console.log(this.roomForm.value));
     }
   }
-  cancel(){
-    this._router.navigate(['/','rooms']);
+  cancel() {
+    this._router.navigate(['/', 'rooms']);
   }
 
-  uploadFile(event:any) {
+  uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -67,7 +97,7 @@ export class CreateRoomComponent implements OnInit {
         this.removeUpload = true;
       }
       // ChangeDetectorRef since file is loading outside the zone
-      this.cd.markForCheck();        
+      this.cd.markForCheck();
     }
   }
 

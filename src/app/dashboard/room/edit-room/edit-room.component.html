@@ -1,24 +1,28 @@
 <ng-container>
     <div class="actions">
       <div class="title">
-        <H1>Create Room</H1>
+        <H1>Update Room</H1>
       </div>
     </div>
     <div class="form">
       <form [formGroup]="roomForm">
         <div class="content">
           <div class="content-left">
-            <div class="nameField">
+            <div class="roomField">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Room Name" formControlName="name">
               </mat-form-field>
-              <div class="errors" *ngIf="submitted && errorHandling('name','required')">Name is required</div>
+              <div class="errors" *ngIf="submitted && errorHandling('name','required')">Room Name is required</div>
             </div>
             <div class="typeField">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Type" formControlName="type">
               </mat-form-field>
-              <div class="errors" *ngIf="submitted && errorHandling('type','required')">Email is required</div>
+              <div class="errors" *ngIf="submitted && errorHandling('type','required')">Type is required</div>
+              <div class="status">
+                <div class="status-dot" [ngClass]="{'active' : roomForm.get('status')?.value == 'active'}"></div>
+                <div class="status-text">{{roomForm.get('status')?.value}}</div>
+            </div>
             </div>
           </div>
           <div class="avatar">
@@ -36,9 +40,10 @@
             </div>
           </div>
         </div>
+        
         <div class="buttons">
           <button (click)="cancel()" style="margin-right: 5px" mat-raised-button>Cancel</button>
-          <button (click)="create()" mat-raised-button color="primary">Create</button>
+          <button (click)="create()" mat-raised-button color="primary">Update</button>
         </div>
       </form>
     </div>

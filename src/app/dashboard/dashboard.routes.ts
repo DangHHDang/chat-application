@@ -4,6 +4,7 @@ import { ChannelComponent } from "./channel/channel.component";
 import { CreateChannelComponent } from "./channel/create-channel/create-channel.component";
 import { LayoutComponent } from "./layout/layout.component";
 import { CreateRoomComponent } from "./room/create-room/create-room.component";
+import { EditRoomComponent } from "./room/edit-room/edit-room.component";
 import { RoomComponent } from "./room/room.component";
 import { CreateUserComponent } from "./user/create/create-user.component";
 import { EditUserComponent } from "./user/edit-user/edit-user.component";
@@ -40,7 +41,7 @@ export const dashboardRoutes: Routes = [
       },
       {
         path: 'rooms/edit/:id',
-        component: CreateRoomComponent
+        component: EditRoomComponent
       },
       //Channel
       { 

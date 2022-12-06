@@ -18,6 +18,7 @@ import { CreateUserComponent } from './user/create/create-user.component';
 import { CreateRoomComponent } from './room/create-room/create-room.component';
 import { CreateChannelComponent } from './channel/create-channel/create-channel.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { EditRoomComponent } from './room/edit-room/edit-room.component';
 
 @NgModule({
   
@@ -33,7 +34,7 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
   providers: [
     AuthGuard
   ],
-  declarations: [LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent,SpinnerComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent],
+  declarations: [LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent,SpinnerComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent, EditRoomComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class DashboardModule { }
