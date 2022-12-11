@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ELEMENT_DATA } from 'src/app/shared/constants/user.constant';
 import { DATA_MODEL, User } from 'src/app/shared/models/user.model';
 import { ConfirmDialog } from 'src/commons/dialog/confirm.component';
+import { TestApiService } from 'src/services/test-api.service';
 
 @Component({
   selector: 'app-user',
@@ -23,13 +24,17 @@ export class UserComponent implements OnInit,AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private _router: Router,public dialog: MatDialog){}
+  constructor(private _router: Router,public dialog: MatDialog,private testService:TestApiService){}
 
   ngOnInit(): void {
   }
 
   create():void {
-    this._router.navigate(['users','create']);
+    this.testService.getList().subscribe(res => {
+      console.log(res);
+      
+    })
+    // this._router.navigate(['users','create']);
   }
 
   delete(_user:User): void{

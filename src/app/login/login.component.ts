@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TestApiService } from 'src/services/test-api.service';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router,private testService : TestApiService) { }
 
   ngOnInit() {
   }
 
   login(){
-    localStorage.setItem("token","day la token")
-    this._router.navigate(['/']);
+    this.testService.getData().subscribe(res => {
+      localStorage.setItem("token",res.token)
+      localStorage.setItem("user",JSON.stringify(res.user))
+      this._router.navigate(['/']);
+      // console.log(res);
+    })
   }
 
 }

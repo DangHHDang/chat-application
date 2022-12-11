@@ -23,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { SpinnerComponent } from "../shared/spinner.component";
 import { SpinnerInterceptorService } from "../core/services/spinner/spinner-interceptor.service";
 import { ToastrModule } from "ngx-toastr";
+import { AuthInterceptorService } from "src/services/authInterceptor.service";
 
 @NgModule({
   
@@ -39,7 +40,12 @@ import { ToastrModule } from "ngx-toastr";
   ],
   providers: [
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+     },
+    // { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true },
   ],
   declarations: [SpinnerComponent,LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent, EditRoomComponent, EditChannelComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
