@@ -45,7 +45,7 @@ import { AuthInterceptorService } from "src/services/authInterceptor.service";
       useClass: AuthInterceptorService,
       multi: true
      },
-    // { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true },
   ],
   declarations: [SpinnerComponent,LayoutComponent, UserComponent, RoomComponent, ChannelComponent, HeaderComponent, SidebarComponent, CreateUserComponent, CreateRoomComponent, CreateChannelComponent, EditUserComponent, EditRoomComponent, EditChannelComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
